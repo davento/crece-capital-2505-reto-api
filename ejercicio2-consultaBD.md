@@ -26,8 +26,8 @@ Ahora, te pedimos que escribas una query para obtener cada una de las siguientes
 - return those counts
 2.
 (in user_movements)
-- Group by date for movement type 
-- count(group by movement type) & average(group by movement type(average(amount))
+- Group by date and movement type 
+- count(group by movement type) & average(amount grouped by movement type)
 - return the count and average
 3.
 (in user_movements)
@@ -43,3 +43,15 @@ SELECT
   COUNT(CASE WHEN movement_type = 'widthdrawal' THEN 1 END) AS total_retiros
 FROM user_movements
 WHERE date **BETWEEN** '2021-12-01' AND '2021-12-31';
+
+2.
+SELECT 
+  date, 
+  movement_type,
+  COUNT(*) AS cantidad_movimientos,
+  AVG(amount) AS promedio_movimientos
+FROM user_movements
+GROUP BY date, movement_type
+ORDER BY date, movement_type;
+
+3.
