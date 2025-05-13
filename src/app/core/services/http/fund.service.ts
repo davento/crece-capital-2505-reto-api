@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../../../environments/environment";
 import { Fund, FundLite } from "../../../shared/interfaces/Fund";
 import { firstValueFrom } from "rxjs";
+import { QuotaLite, QuotaResponse } from "../../../shared/interfaces/Quota";
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,17 @@ export class FundService{
       });
     }
     return funds;
+  }
+
+  async getQuotas(id: string, date_start: string, date_end: string): Promise<QuotaLite[]>{
+    const quotas_url = `${this.API_URL}/${id}/days?from_date=${date_start}&to_date=${date_end}`;
+    const response: QuotaResponse = await firstValueFrom(this.http.get<QuotaResponse>(quotas_url));
+    const quotas_data = response.data;
+    const quotas: QuotaLite[] = quotas_data.map(quota => ({
+      id: quota.id,
+      date: quota.attributes.date,
+      price: quota.attributes.price,
+    }));
+    return quotas;
   }
 }
