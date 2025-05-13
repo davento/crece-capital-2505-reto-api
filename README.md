@@ -12,11 +12,15 @@
 Propuesta: realizar una interfaz web mediante la que se visualice la información histórica de los fondos mediante gráficos. Dichos gráficos tendrán filtros por Tipo de Fondo y Rango de Fecha.
 
 Herramientas a utilizar:
-- Angular v18.2.11
-- NPM
-    - Chart.js
-    - Angular Material
+- Angular 18.2.11
+- npm
 - API Fintual
+
+Paquetes utilizados:
+- Chart.js
+  - chartjs-adapter-date-fns
+  - ng2-charts (`4.1.1` para asegurar compatibilidad)
+- Angular Material
 
 ### Ejecución
 

@@ -30,6 +30,7 @@ export class FundService{
 
   async getQuotas(id: string, date_start: string, date_end: string): Promise<QuotaLite[]>{
     const quotas_url = `${this.API_URL}/${id}/days?from_date=${date_start}&to_date=${date_end}`;
+    console.log(quotas_url);
     const response: QuotaResponse = await firstValueFrom(this.http.get<QuotaResponse>(quotas_url));
     const quotas_data = response.data;
     const quotas: QuotaLite[] = quotas_data.map(quota => ({

@@ -35,6 +35,7 @@
   </div>
   <div class="column">
       <h2>Gráficos</h2>
+      <app-quota-chart *ngIf="chartSeries.length" [data]="chartSeries" [timeUnit]="timeUnit"></app-quota-chart>
   </div>
 </div>
 <router-outlet />
