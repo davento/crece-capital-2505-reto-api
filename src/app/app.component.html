@@ -1,14 +1,37 @@
-<main class="main">
-  <div class="content">
-    <div class="title">
-      <h1>{{ title }}</h1>
-    </div>
-    <div>
+<div class="title">
+  <h1>{{ title }}</h1>
+</div>
+<div class="container">
+  <div class="column">
+    <div class="row">
       <h2>Filtros</h2>
+      <mat-card appearance="outlined">
+        <mat-card-content>
+          <form [formGroup]="filterForm">
+            <mat-form-field appearance="outline">
+              <mat-label>Tipo de fondo:</mat-label>
+              <mat-select formControlName="fund_type" multiple [placeholder]="funds[0]">
+                <mat-option *ngFor="let fund of funds" [value]="fund">{{fund}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="filterForm.controls['fund_type'].hasError('required')">Elegir al menos un tipo de fondo</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Rango de fechas:</mat-label>
+              <mat-date-range-input [formGroup]="filterForm" [rangePicker]="picker">
+                <input matStartDate formControlName="date_start" [placeholder]="date_range[0]">
+                <input matEndDate formControlName="date_end" [placeholder]="date_range[1]">
+              </mat-date-range-input>
+              <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+      </mat-card>
     </div>
-    <div>
+    <div class="row">
       <h2>Gráficos</h2>
     </div>
   </div>
-</main>
+</div>
 <router-outlet />

@@ -14,7 +14,8 @@ Propuesta: realizar una interfaz web mediante la que se visualice la informació
 Herramientas a utilizar:
 - Angular v18.2.11
 - NPM
-    - chart.js
+    - Chart.js
+    - Angular Material
 - API Fintual
 
 ### Ejecución
