@@ -33,6 +33,7 @@ Ahora, te pedimos que escribas una query para obtener cada una de las siguientes
 (in user_movements)
 - Count(Group by user (movement_type) == subscription)
 - Get user with max count
+
 (user_movements join user_data)
 - Join the user with most subscriptions to the other table, get only name and last_name
 
@@ -55,3 +56,13 @@ GROUP BY date, movement_type
 ORDER BY date, movement_type;
 
 3.
+SELECT user.name, user.last_name
+FROM user_data user
+JOIN (
+  SELECT user_id
+  FROM user_movements
+  WHERE movement_type = 'subscription'
+  GROUP BY user_id
+  ORDER BY COUNT(*) DESC
+  LIMIT 1
+) AS usuario_mas_aportes ON user.user_id = usuario_mas_aportes.user_id;
