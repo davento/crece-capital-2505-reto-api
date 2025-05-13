@@ -20,16 +20,26 @@ Ahora, te pedimos que escribas una query para obtener cada una de las siguientes
 
 ### Lluvia de ideas
 1.
+(in user_movements)
 - Filter by date range (12/01/2021 - 12/31/2021)
 - count(group by movement_type == subscription) and count(group by movement_type == withdrawal)
 - return those counts
 2.
+(in user_movements)
 - Group by date for movement type 
 - count(group by movement type) & average(group by movement type(average(amount))
 - return the count and average
 3.
+(in user_movements)
 - Count(Group by user (movement_type) == subscription)
 - Get user with max count
+(user_movements join user_data)
 - Join the user with most subscriptions to the other table, get only name and last_name
 
 ### Solución propuesta
+1.
+SELECT 
+  COUNT(CASE WHEN movement_type = 'subscription' THEN 1 END) AS total_aportes
+  COUNT(CASE WHEN movement_type = 'widthdrawal' THEN 1 END) AS total_retiros
+FROM user_movements
+WHERE date **BETWEEN** '2021-12-01' AND '2021-12-31';
