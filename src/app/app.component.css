@@ -36,6 +36,10 @@ mat-form-field {
         width: 80%;
     }
 
+    .column {
+      width: 50%;
+    }
+
     .container {
       display: flex;
     }
